@@ -1,0 +1,51 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Category</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let rowData of data">
+      <td>{{ rowData.id }}</td>
+      <td>{{ rowData.name }}</td>
+      <td>{{ rowData.price }}</td>
+      <td>{{ rowData.category }}</td>
+      <td>
+        <button type="button" (click)="edit(rowData)">Edit</button>
+        <button type="button" (click)="delete(rowData.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div>
+  <h3>{{ editing ? "Edit Item" : "Add Item" }}</h3>
+  <form (ngSubmit)="save()">
+    <input
+      type="text"
+      [(ngModel)]="form.name"
+      placeholder="Name"
+      name="name"
+      required
+    />
+    <input
+      type="number"
+      [(ngModel)]="form.price"
+      placeholder="Value"
+      name="price"
+      required
+    />
+    <input
+      type="text"
+      [(ngModel)]="form.category"
+      placeholder="Category"
+      name="category"
+      required
+    />
+    <button type="submit">Save</button>
+  </form>
+</div>
